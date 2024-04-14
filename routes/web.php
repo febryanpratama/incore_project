@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Front\GetTemplateController;
 use App\Http\Controllers\LandingController;
@@ -53,7 +54,7 @@ Route::group([
     });
 
     Route::prefix('payment')->group(function(){
-        // Route::get('/', [PaymentController::class, 'index']);
+        Route::get('/', [PaymentController::class, 'index']);
     });
 });
 
@@ -80,3 +81,8 @@ Route::group([
 
 Route::get('test', function(){
     return view('testing.product');
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', [LandingController::class, 'test']);

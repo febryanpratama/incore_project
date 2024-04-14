@@ -46,23 +46,23 @@
              </a>
           </li>
           <li class="nav-item ">
-             <a href="{{ url('admin/quiz') }}" class="nav-link">
+             <a href="{{ url('admin/payment') }}" class="nav-link">
              <i class="link-icon" data-feather="calendar"></i>
              <span class="link-title">Payment</span>
              </a>
           </li>
           <li class="nav-item ">
-             <a href="{{ url('admin/quiz') }}" class="nav-link">
+             <a href="{{ url('admin/template') }}" class="nav-link">
              <i class="link-icon" data-feather="message-square"></i>
              <span class="link-title">Template</span>
              </a>
           </li>
-          <li class="nav-item ">
+          {{-- <li class="nav-item ">
              <a href="{{ url('admin/quiz') }}" class="nav-link">
              <i class="link-icon" data-feather="calendar"></i>
              <span class="link-title">Tentang Aplikasi</span>
              </a>
-          </li>
+          </li> --}}
           <li class="nav-item nav-category">Profile</li>
           
           <li class="nav-item nav-category">Docs</li>
