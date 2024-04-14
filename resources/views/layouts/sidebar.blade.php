@@ -39,6 +39,7 @@
                 </ul>
              </div>
           </li> --}}
+          @hasrole('admin')
           <li class="nav-item ">
              <a href="{{ url('admin/materi') }}" class="nav-link">
              <i class="link-icon" data-feather="user"></i>
@@ -57,6 +58,15 @@
              <span class="link-title">Template</span>
              </a>
           </li>
+          @endrole
+          @hasrole('user')
+          <li class="nav-item ">
+            <a href="{{ url('user/template') }}" class="nav-link">
+            <i class="link-icon" data-feather="message-square"></i>
+            <span class="link-title">Template</span>
+            </a>
+         </li>
+          @endrole
           {{-- <li class="nav-item ">
              <a href="{{ url('admin/quiz') }}" class="nav-link">
              <i class="link-icon" data-feather="calendar"></i>
