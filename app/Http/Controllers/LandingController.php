@@ -98,8 +98,11 @@ class LandingController extends Controller
     }
     
     public function test(){
-        $response = $this->tripayService->getChannel();
-        dd($response);   
+        $user = User::where('email', 'febryancpratama@gmail.com')->first();
+
+        $resp = \Mail::to($user['email'])->send(new \App\Mail\UserTransaction($user));
+
+        dd($resp);
     }
 
     public function callback(Request $request)

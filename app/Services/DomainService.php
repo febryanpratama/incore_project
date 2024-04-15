@@ -10,7 +10,7 @@ class DomainService {
     
             // Data to be sent in the POST request
             $list = [
-                'domain' => 'febryancpratama'
+                'domain' => $data['domain'],
             ];
             
             // Initialize cURL session
