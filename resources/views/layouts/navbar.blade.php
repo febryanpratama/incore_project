@@ -116,7 +116,7 @@
                       </div>
                       <div class="d-flex justify-content-between flex-grow-1">
                          <div class="me-4">
-                            <p>Amiah Burton</p>
+                            <p>{{ Auth::user()->name }}</p>
                             <p class="tx-12 text-muted">Project deatline</p>
                          </div>
                          <p class="tx-12 text-muted">2 hrs ago</p>
