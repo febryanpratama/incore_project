@@ -20,4 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('transaction/callback', [LandingController::class, 'callback']);
+Route::post('transaction/callback', [LandingController::class, 'callback']);
