@@ -177,11 +177,14 @@ class LandingController extends Controller
                 'password' => Hash::make('password123'),
             ]);
 
-            dd($user);
+
+            $data = [
+                'email' => $invoice->customer_email,
+            ];
 
             $user->assignRole('user');
 
-            $resp = \Mail::to($user['email'])->send(new \App\Mail\UserTransaction($user));
+            $resp = \Mail::to($data['email'])->send(new \App\Mail\UserTransaction($data));
 
             // Sync UserTemplate
             $update = UserTemplate::where('reference', $tripayReference)->update(['user_id' => $user->id]);
