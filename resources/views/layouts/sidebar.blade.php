@@ -61,7 +61,7 @@
           @endrole
           @hasrole('user')
           <li class="nav-item ">
-            <a href="{{ url('user/template') }}" class="nav-link">
+            <a href="{{ url('user/set-template') }}" class="nav-link">
             <i class="link-icon" data-feather="message-square"></i>
             <span class="link-title">Template</span>
             </a>
