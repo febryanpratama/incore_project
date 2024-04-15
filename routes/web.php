@@ -34,7 +34,12 @@ Route::group([
 
 // End Landing Page
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+    'confirm' => false,
+]);
 
 Route::group([
     'prefix' => 'admin',
