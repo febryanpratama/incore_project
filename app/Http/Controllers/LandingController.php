@@ -177,6 +177,8 @@ class LandingController extends Controller
                 'password' => Hash::make('password123'),
             ]);
 
+            dd($user);
+
             $user->assignRole('user');
 
             $resp = \Mail::to($user['email'])->send(new \App\Mail\UserTransaction($user));
