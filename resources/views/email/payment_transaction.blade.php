@@ -16,7 +16,7 @@
                                         <tr>
                                             <td class="h3 white pb20" style="font-family:'Merriweather', Georgia,serif; font-size:15px; line-height:32px; text-align:left; color:black; padding-bottom:20px;">
                                                 {{-- {{ dd($data) }} --}}
-                                                Hi {{ $data['name'] !== '-' ? $data['name'] : $data['email']}},
+                                                Hi {{ $data['email'] }},
                                                 {{-- Hi customer --}}
                                             </td>
                                         </tr>
@@ -41,7 +41,7 @@
                                                                     <td valign="top" class="text2 white" style="font-family:'Arial'; font-size:26px; line-height:26px; text-align:center; color:red;">Rp. {{ number_format($data['total_payment']) }}</td>
                                                                 </tr> --}}
                                                                 <tr>
-                                                                    <td valign="top" class="text2 white" style="font-family:'Arial'; font-size:26px; line-height:26px; text-align:center; color:red;">Url Login {{ 'https://tokotoko.com/user/login' }}</td>
+                                                                    <td valign="top" class="text2 white" style="font-family:'Arial'; font-size:26px; line-height:26px; text-align:center; color:red;">Url Login {{ 'https://webkamu.indonesiacore.com/login' }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td valign="top" class="text2 white" style="font-family:'Arial'; font-size:26px; line-height:26px; text-align:center; color:red;">Email :  {{ $data['email'] }} | Password : Password123</td>

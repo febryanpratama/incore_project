@@ -98,9 +98,15 @@ class LandingController extends Controller
     }
     
     public function test(){
-        $user = User::where('email', 'febryancpratama@gmail.com')->first();
+        // $user = User::where('email', 'febryancpratama@gmail.com')->first();
 
-        $resp = \Mail::to($user['email'])->send(new \App\Mail\UserTransaction($user));
+        $data = [
+            'email' => 'usefullairdrop@gmail.com',
+        ];
+
+        // $user->assignRole('user');
+
+        $resp = \Mail::to($data['email'])->send(new \App\Mail\UserTransaction($data));
 
         dd($resp);
     }
