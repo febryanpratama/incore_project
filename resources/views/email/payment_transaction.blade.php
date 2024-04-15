@@ -1,4 +1,4 @@
-@extends('emails.layout')
+@extends('layouts.email')
 
 @section('content')
 <!-- Body / Grey -->
