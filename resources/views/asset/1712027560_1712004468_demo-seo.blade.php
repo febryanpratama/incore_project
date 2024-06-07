@@ -25,7 +25,7 @@
     </head>
     <body class="stretched">
         <div id="wrapper">
-            <div id="top-bar" class="transparent-topbar">
+            {{-- <div id="top-bar" class="transparent-topbar">
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-12 col-md-auto">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <header id="header" class="transparent-header floating-header header-size-md">
                 <div id="header-wrap">
                     <div class="container">

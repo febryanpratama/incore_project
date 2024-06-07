@@ -24,6 +24,8 @@ class TemplateController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_template' => 'required',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'harga' => 'required|numeric',
+            'diskon' => 'required|numeric',
         ]);
         if($validator->fails()){
             dd($validator->errors()->first());
@@ -38,6 +40,8 @@ class TemplateController extends Controller
         Template::create([
             'nama_template' => $request->nama_template,
             'slug' => \Str::slug($request->nama_template),
+            'harga' => $request->harga,
+            'diskon' => $request->diskon,
             'thumbnail' => $thumbnail_name,
         ]);
 

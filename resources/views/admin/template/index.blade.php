@@ -16,8 +16,17 @@
                                 <input type="text" name="nama_template" class="form-control">
                             </div>
                             <div class="form-group mb-3">
+                                <label for="" class="control-label mb-2">Harga</label>
+                                <input type="number" name="harga" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
                                 <label for="" class="control-label mb-2">Thumbnail</label>
                                 <input type="file" name="thumbnail" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="" class="control-label mb-2">Diskon</label>
+                                <input type="number" name="diskon" class="form-control">
+                                <small class="text-danger">Range 1 - 100. Set 0 jika tidak ada diskon</small>
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" class="form-control btn btn-outline-success"> Simpan Data </button>

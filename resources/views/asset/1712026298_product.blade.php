@@ -35,7 +35,7 @@
             <div id="top-bar" class="transparent-topbar dark">
                 <div class="container">
                     <div class="row justify-content-between">
-                        <div class="col-12 col-md-auto">
+                        {{-- <div class="col-12 col-md-auto">
                             <div class="top-links">
                                 <ul class="top-links-container">
                                     <li class="top-links-item"><a href="demo-seo.html">Home</a></li>
@@ -57,7 +57,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-md-auto dark">
                             <ul id="top-social">
                                 <li>
@@ -363,7 +363,7 @@
                                 @endforeach --}}
                                 @foreach ($data->navigationvalue as $pd)
                                     
-                                {{ dd($pd) }}
+                                {{-- {{ dd($pd) }} --}}
                                     @foreach ($pd->card as $it)
                                     {{-- {{ dd($it) }} --}}
                                         

@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Front\GetTemplateController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\User\AccountSosmedController;
+use App\Http\Controllers\User\KontenSosmedController;
 use App\Http\Controllers\User\SetTemplateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +77,18 @@ Route::group([
         Route::post('/store', [SetTemplateController::class, 'store']);
         Route::post('/store-file', [SetTemplateController::class, 'storeFile']);
         Route::post('/card', [SetTemplateController::class, 'storeCard']);
+    });
+
+    Route::prefix('konten-sosmed')->group(function(){
+        Route::get('/', [KontenSosmedController::class, 'index']);
+        Route::post('/', [KontenSosmedController::class, 'store']);
+
+    });
+
+
+    Route::prefix('account-sosmed')->group(function(){
+        Route::get('/', [AccountSosmedController::class, 'index']);
+        Route::post('/', [AccountSosmedController::class, 'store']);
     });
 });
 

@@ -62,8 +62,20 @@
           @hasrole('user')
           <li class="nav-item ">
             <a href="{{ url('user/set-template') }}" class="nav-link">
-            <i class="link-icon" data-feather="message-square"></i>
-            <span class="link-title">Template</span>
+               <i class="link-icon" data-feather="message-square"></i>
+               <span class="link-title">Template</span>
+            </a>
+         </li>
+          <li class="nav-item ">
+            <a href="{{ url('user/konten-sosmed') }}" class="nav-link">
+               <i class="link-icon" data-feather="calendar"></i>
+               <span class="link-title">Konten Sosmed</span>
+            </a>
+         </li>
+          <li class="nav-item ">
+            <a href="{{ url('user/account-sosmed') }}" class="nav-link">
+               <i class="link-icon" data-feather="bell"></i>
+               <span class="link-title">Account Sosmed</span>
             </a>
          </li>
           @endrole
@@ -76,11 +88,15 @@
           <li class="nav-item nav-category">Profile</li>
           
           <li class="nav-item nav-category">Docs</li>
+          {{-- logout --}}
           <li class="nav-item">
-             <a href="https://www.nobleui.com/laravel/documentation/docs.html" target="_blank" class="nav-link">
-             <i class="link-icon" data-feather="hash"></i>
-             <span class="link-title">Logout</span>
-             </a>
+               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+               <i class="link-icon" data-feather="log-out"></i>
+               <span class="link-title">Logout</span>
+               </a>
+               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+               </form>
           </li>
        </ul>
     </div>

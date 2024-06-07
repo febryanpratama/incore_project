@@ -18,6 +18,22 @@
                         <h1 class="h2 sm:h1 lg:display-6 xl:display-5 m-0" id="textvalue">List Domain.</h1>
                         <p class="fs-6 sm:fs-5 text-dark dark:text-white text-opacity-70" id="descvalue">Berikut ini merupakan List Domain yang dapat anda gunakan pada website perusahaan anda</p>
                     </div>
+                   
+                </div>
+                <div class="row child-cols-12 sm:child-cols-4 flex justify-center col-match g-2 sm:g-3 uc-grid" data-uc-grid=""  data-anime="onview: -100; targets: > *; translateY: [48, 0]; opacity: [0, 1]; easing: spring(1, 80, 10, 0); duration: 450; delay: anime.stagger(100, {start: 200});">
+                    <div style="transform: translateY(0px); opacity: 1;" class="uc-first-column">
+                        <div class="panel vstack justify-end items-end gap-1 p-3 rounded lg:rounded-2 bg-secondary dark:bg-gray-300 dark:bg-opacity-10">
+                            <div class="vstack gap-narrow">
+                                <h5 class="h6 lg:h5 m-0">Usefullairdrop.com</h5>
+                                <span class="fs-6 text-dark dark:text-white text-opacity-70">Rp. 270.000</span>
+                            </div>
+                            <a class="uc-link fs-7 fw-bold d-inline-flex items-center gap-narrow border-bottom pb-narrow" href="javascript:void(0)">
+                                <span>Pilih Domain</span>
+                                {{-- <span onclick="addDomain('{{ $domain[$i]['domain'] }}','{{ $domain[$i]['price'] }}')">Pilih Domain</span> --}}
+                                <i class="icon icon-narrow unicon-arrow-up-right fw-bold"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,7 +50,6 @@
                             
                             <div class="row child-cols-12 sm:child-cols-6 col-match g-2 sm:g-3 uc-grid" data-uc-grid="" data-anime="onview: -100; targets: > *; translateY: [48, 0]; opacity: [0, 1]; easing: spring(1, 80, 10, 0); duration: 450; delay: anime.stagger(100, {start: 200});">
 
-                                {{-- {{ dd($domain) }} --}}
                                 @for ($i = 0; $i < count($domain); $i++)
                                 <div style="transform: translateY(0px); opacity: 1;" class="uc-first-column">
                                     <div class="panel vstack justify-end items-end gap-1 p-3 rounded lg:rounded-2 bg-white dark:bg-gray-300 dark:bg-opacity-10">
@@ -219,17 +234,33 @@
                                     <div class="panel vstack gap-2 lg:gap-4 p-2 lg:p-4 bg-gray-50 dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800 rounded">
                                         <div class="vstack gap-1 lg:gap-2 fs-6">
                                             {{-- {{ dd($payment) }} --}}
-                                            @foreach ($payment as $key)
+                                            {{-- @foreach ($payment as $key) --}}
                                             {{-- {{ dd($key['code']) }} --}}
                                             <div class="w-100">
                                                 <div class="panel p-2 bg-white border-gray-100 w-100 rounded dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800">
                                                     <div class="form-check">
-                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="{{ $key['code'] }}" id="{{ $key['name'] }}" checked="">
-                                                        <label class="form-check-label fw-bold" for="{{ $key['name'] }}">{{ $key['name'] }}</label>
+                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="BRI" id="BANK BRI - 039301001433302" checked="">
+                                                        <label class="form-check-label fw-bold" for="BANK BRI - 039301001433302">BANK BRI - 039301001433302</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endforeach
+                                            <div class="w-100">
+                                                <div class="panel p-2 bg-white border-gray-100 w-100 rounded dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="MANDIRI" id="BANK MANDIRI - 1640015155155" checked="">
+                                                        <label class="form-check-label fw-bold" for="BANK MANDIRI - 1640015155155">BANK MANDIRI - 1640015155155</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="w-100">
+                                                <div class="panel p-2 bg-white border-gray-100 w-100 rounded dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="{{ $key['code'] }}" id="BANK BRI - 039301001433302" checked="">
+                                                        <label class="form-check-label fw-bold" for="BANK BRI - 039301001433302">BANK BRI - 039301001433302</label>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            {{-- @endforeach --}}
                                         </div>
                                         <p class="text-dark dark:text-white text-opacity-60">Data Pribadi Yang Disimpan akan kami gunakan untuk melakukan improvement dimasa yang akan datang</p>
                                         <button class="btn btn-md xl:btn-lg btn-primary text-white" type="submit" form="myform"></button>

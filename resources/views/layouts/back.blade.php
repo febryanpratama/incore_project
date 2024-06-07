@@ -28,15 +28,19 @@
       <!-- plugin css -->
       <link href="{{ asset('admin') }}/assets/fonts/feather-font/css/iconfont.css" rel="stylesheet" />
       <link href="{{ asset('admin') }}/assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
+      
       <!-- end plugin css -->
       <link href="{{ asset('admin') }}/assets/plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
       <!-- common css -->
       <link href="{{ asset('admin') }}/css/app.css" rel="stylesheet" />
       <!-- end common css -->
-
+      
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
       <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
       <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+   	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
       
       <style>
          .hide {
@@ -76,6 +80,9 @@
       <script src="{{ asset('') }}admin/app-assets/vendors/js/extensions/sweetalert2.all.js" type="text/javascript"></script>
       <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css " rel="stylesheet">
       <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+   	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+   	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
 
 
       <script>
