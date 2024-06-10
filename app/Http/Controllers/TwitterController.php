@@ -80,6 +80,7 @@ class TwitterController extends Controller
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
 
             // Redirect to the home page with an error message
+            dd($e->getMessage());
             return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
         }
     }
