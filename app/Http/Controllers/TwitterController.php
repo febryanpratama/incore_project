@@ -42,7 +42,19 @@ class TwitterController extends Controller
     {
         try {
             // Retrieve the serialized temporary credentials from the session
-            $temporaryCredentials = unserialize(session('oauth.temp'));
+            $serializedTempCredentials = session('oauth.temp');
+
+            // Check if the session key exists and unserialize the temporary credentials
+            if ($serializedTempCredentials) {
+                $temporaryCredentials = unserialize($serializedTempCredentials);
+            } else {
+                throw new \Exception('Temporary credentials not found in session.');
+            }
+
+            // Ensure the unserialized object is of the correct type
+            if (!$temporaryCredentials instanceof TemporaryCredentials) {
+                throw new \Exception('Invalid temporary credentials type.');
+            }
 
             // Log the temporary credentials for debugging purposes
             \Log::info('Temporary credentials retrieved from session.', ['temp' => $temporaryCredentials]);
