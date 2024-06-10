@@ -16,27 +16,40 @@ class TwitterController extends Controller
 
     public function redirectToProvider()
     {
-        $temporaryCredentials = $this->server->getTemporaryCredentials();
-        session(['oauth.temp' => $temporaryCredentials]);
+        try {
+            $temporaryCredentials = $this->server->getTemporaryCredentials();
+            session(['oauth.temp' => $temporaryCredentials]);
 
-        return redirect($this->server->getAuthorizationUrl($temporaryCredentials));
+            \Log::info('Temporary credentials stored in session.', ['temp' => $temporaryCredentials]);
+
+            return redirect($this->server->getAuthorizationUrl($temporaryCredentials));
+        } catch (\Exception $e) {
+            \Log::error('Twitter OAuth Error: ' . $e->getMessage());
+            return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
+        }
     }
 
     public function handleProviderCallback(Request $request)
     {
-        $temporaryCredentials = session('oauth.temp');
+        try {
+            $temporaryCredentials = session('oauth.temp');
 
-        $tokenCredentials = $this->server->getTokenCredentials(
-            $temporaryCredentials,
-            $request->get('oauth_token'),
-            $request->get('oauth_verifier')
-        );
+            \Log::info('Temporary credentials retrieved from session.', ['temp' => $temporaryCredentials]);
 
-        $user = $this->server->getUserDetails($tokenCredentials);
+            $tokenCredentials = $this->server->getTokenCredentials(
+                $temporaryCredentials,
+                $request->get('oauth_token'),
+                $request->get('oauth_verifier')
+            );
 
-        // Store user information and token credentials
-        session(['twitter_oauth_token' => $tokenCredentials]);
+            $user = $this->server->getUserDetails($tokenCredentials);
 
-        return redirect('/')->with('status', 'Successfully authenticated with Twitter!');
+            session(['twitter_oauth_token' => $tokenCredentials]);
+
+            return redirect('/')->with('status', 'Successfully authenticated with Twitter!');
+        } catch (\Exception $e) {
+            \Log::error('Twitter OAuth Error: ' . $e->getMessage());
+            return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
+        }
     }
 }
