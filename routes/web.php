@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Front\GetTemplateController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\User\AccountSosmedController;
 use App\Http\Controllers\User\KontenSosmedController;
 use App\Http\Controllers\User\SetTemplateController;
@@ -91,6 +92,13 @@ Route::group([
         Route::post('/', [AccountSosmedController::class, 'store']);
     });
 });
+
+// routes/web.php
+
+
+Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
+// Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
+
 
 Route::group([
     'prefix' => '{slug}'

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\TwitterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('transaction/callback', [LandingController::class, 'callback']);
+Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);

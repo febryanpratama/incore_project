@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\TwitterServiceProvider::class,
 
         /*
          * Application Service Providers...
