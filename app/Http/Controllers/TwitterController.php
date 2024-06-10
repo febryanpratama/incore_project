@@ -20,31 +20,38 @@ class TwitterController extends Controller
 
     public function redirectToProvider()
     {
-        DB::beginTransaction();
         try {
             // Obtain temporary credentials from Twitter
-            $temporaryCredentials = $this->server->getTemporaryCredentials();
+            $temporaryCredentials = null;
     
-            // Serialize the temporary credentials before storing in the database
-            Account::create([
-                'nama_sosmed' => 'twitter oauth',
-                'token' => "default_token",
-                'temp_credentials' => serialize($temporaryCredentials),
-                "status" => "Inactive"
-            ]);
+            // Wrap the process in a transaction and lock the row to avoid race condition
+            DB::transaction(function () use (&$temporaryCredentials) {
+                // Retrieve the latest account record with a row-level lock
+                $account = Account::lockForUpdate()->latest()->first();
     
-            // Commit the transaction
-            DB::commit();
+                // If there is an existing record and its status is 'Inactive', update it; otherwise, create a new record
+                if ($account && $account->status == 'Inactive') {
+                    $account->update([
+                        'temp_credentials' => serialize($this->server->getTemporaryCredentials()),
+                    ]);
+                    $temporaryCredentials = $account->temp_credentials;
+                } else {
+                    $temporaryCredentials = $this->server->getTemporaryCredentials();
+                    Account::create([
+                        'nama_sosmed' => 'twitter oauth',
+                        'token' => "default_token",
+                        'temp_credentials' => serialize($temporaryCredentials),
+                        'status' => 'Inactive'
+                    ]);
+                }
+            });
     
             // Log the temporary credentials for debugging purposes
             \Log::info('Temporary credentials stored in database.', ['temp' => $temporaryCredentials]);
             
             // Redirect to Twitter's authorization URL
-            return redirect($this->server->getAuthorizationUrl($temporaryCredentials));
+            return redirect($this->server->getAuthorizationUrl(unserialize($temporaryCredentials)));
         } catch (\Exception $e) {
-            // Rollback the transaction in case of any error
-            DB::rollBack();
-    
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
     
