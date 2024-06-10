@@ -33,7 +33,7 @@ class TwitterController extends Controller
             Account::create([
                 'nama_sosmed' => 'twitter oauth',
                 'temp_credentials' => serialize($temporaryCredentials),
-                "status" => "inactive"
+                "status" => "Inactive"
             ]);
 
             // Log the temporary credentials for debugging purposes
@@ -56,7 +56,12 @@ class TwitterController extends Controller
     {
         try {
             // Retrieve the serialized temporary credentials from the session
-            $serializedTempCredentials = Session::get('oauth.temp');
+            $account = Account::where('status', 'Inactive')->first();
+            
+            $serializedTempCredentials = $account->temp_credentials;
+
+
+
 
             // dd($serializedTempCredentials);
             // Check if the session key exists and unserialize the temporary credentials
