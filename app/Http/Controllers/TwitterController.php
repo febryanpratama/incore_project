@@ -58,6 +58,10 @@ class TwitterController extends Controller
         try {
             // Retrieve the serialized temporary credentials from the session
             $account = Account::where('status', 'Inactive')->first();
+
+            $account->update([
+                'status' => 'Active'
+            ]);
             
             $serializedTempCredentials = $account->temp_credentials;
 
@@ -93,7 +97,7 @@ class TwitterController extends Controller
             // Store the token credentials in the session
             Session::put('twitter_oauth_token', $tokenCredentials);
 
-            dd($tokenCredentials);
+            dd($tokenCredentials."token".$user);
             // Redirect to the home page with a success message
             return redirect('/')->with('status', 'Successfully authenticated with Twitter!');
         } catch (\Exception $e) {
