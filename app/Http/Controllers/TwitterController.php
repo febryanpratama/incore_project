@@ -32,6 +32,7 @@ class TwitterController extends Controller
             // dd(Session::get('oauth.temp'));
             Account::create([
                 'nama_sosmed' => 'twitter oauth',
+                'token' => "default_token",
                 'temp_credentials' => serialize($temporaryCredentials),
                 "status" => "Inactive"
             ]);
