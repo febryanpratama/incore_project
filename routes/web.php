@@ -10,6 +10,7 @@ use App\Http\Controllers\User\KontenSosmedController;
 use App\Http\Controllers\User\SetTemplateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 // Landing Page
 Route::get('/', function () {
+    dd(Session::get('twitter_oauth_token'));
     return view('landing.index');
 });
 
