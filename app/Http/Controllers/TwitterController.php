@@ -41,24 +41,24 @@ class TwitterController extends Controller
     public function handleProviderCallback(Request $request)
     {
         try {
-            // Retrieve the serialized temporary credentials from the session
-            $serializedTempCredentials = session('oauth.temp');
+            // // Retrieve the serialized temporary credentials from the session
+            // $serializedTempCredentials = session('oauth.temp');
     
-            // Check if the session key exists
-            if (!$serializedTempCredentials) {
-                throw new \Exception('Temporary credentials not found in session.');
-            }
+            // // Check if the session key exists
+            // if (!$serializedTempCredentials) {
+            //     throw new \Exception('Temporary credentials not found in session.');
+            // }
     
-            // Unserialize the temporary credentials
-            $temporaryCredentials = unserialize($serializedTempCredentials);
+            // // Unserialize the temporary credentials
+            // $temporaryCredentials = unserialize($serializedTempCredentials);
     
-            // Ensure the unserialized object is of the correct type
-            if (!$temporaryCredentials instanceof TemporaryCredentials) {
-                throw new \Exception('Invalid temporary credentials type.');
-            }
+            // // Ensure the unserialized object is of the correct type
+            // if (!$temporaryCredentials instanceof TemporaryCredentials) {
+            //     throw new \Exception('Invalid temporary credentials type.');
+            // }
     
-            // Log the temporary credentials for debugging purposes
-            \Log::info('Temporary credentials retrieved from session.', ['temp' => $temporaryCredentials]);
+            // // Log the temporary credentials for debugging purposes
+            // \Log::info('Temporary credentials retrieved from session.', ['temp' => $temporaryCredentials]);
     
             // Obtain token credentials from Twitter using the temporary credentials and the verifier
             $tokenCredentials = $this->server->getTokenCredentials(
