@@ -59,9 +59,9 @@ class TwitterController extends Controller
             // Retrieve the serialized temporary credentials from the session
             $account = Account::where('status', 'Inactive')->first();
 
-            $account->update([
-                'status' => 'Active'
-            ]);
+            // $account->update([
+            //     'status' => 'Active'
+            // ]);
             
             $serializedTempCredentials = $account->temp_credentials;
 
