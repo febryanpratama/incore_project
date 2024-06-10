@@ -16,7 +16,7 @@ class AddTempcreToAccount extends Migration
         Schema::table('accounts', function (Blueprint $table) {
             //
             $table->json('temp_credentials');
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            // $table->enum('status', ['active', 'inactive'])->default('inactive');
         });
     }
 

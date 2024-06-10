@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use League\OAuth1\Client\Credentials\TemporaryCredentials;
@@ -29,6 +30,11 @@ class TwitterController extends Controller
             // Session::put('oauth.temp', serialize($temporaryCredentials));
 
             // dd(Session::get('oauth.temp'));
+            Account::create([
+                'nama_sosmed' => 'twitter oauth',
+                'temp_credentials' => serialize($temporaryCredentials),
+                "status" => "inactive"
+            ]);
 
             // Log the temporary credentials for debugging purposes
             // dd(Session::get('oauth.temp'));
