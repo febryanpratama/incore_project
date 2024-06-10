@@ -72,6 +72,7 @@ class TwitterController extends Controller
             // Store the token credentials in the session
             session(['twitter_oauth_token' => $tokenCredentials]);
 
+            dd($tokenCredentials);
             // Redirect to the home page with a success message
             return redirect('/')->with('status', 'Successfully authenticated with Twitter!');
         } catch (\Exception $e) {

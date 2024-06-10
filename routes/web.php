@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Session;
 */
 // Landing Page
 Route::get('/', function () {
-    dd(Session::get('twitter_oauth_token'));
+    // dd(Session::get('twitter_oauth_token'));
     return view('landing.index');
 });
 
