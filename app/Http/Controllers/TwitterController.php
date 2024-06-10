@@ -41,12 +41,12 @@ class TwitterController extends Controller
             ]);
 
 
-            DB::commit();
-
+            \Log::info('Temporary credentials stored in session.', ['temp' => $temporaryCredentials]);
+            
             // Log the temporary credentials for debugging purposes
             // dd(Session::get('oauth.temp'));
-            \Log::info('Temporary credentials stored in session.', ['temp' => $temporaryCredentials]);
-
+            
+            DB::commit();
             // Redirect to Twitter's authorization URL
             return redirect($this->server->getAuthorizationUrl($temporaryCredentials));
         } catch (\Exception $e) {
