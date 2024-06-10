@@ -23,7 +23,7 @@ class TwitterController extends Controller
             // Obtain temporary credentials from Twitter
             $temporaryCredentials = $this->server->getTemporaryCredentials();
 
-            dd(serialize($temporaryCredentials));
+            // dd(serialize($temporaryCredentials));
             
 
             // Serialize the temporary credentials before storing in the session
