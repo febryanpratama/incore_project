@@ -22,11 +22,11 @@ class TwitterController extends Controller
             // Obtain temporary credentials from Twitter
             $temporaryCredentials = $this->server->getTemporaryCredentials();
 
-            // dd($temporaryCredentials);
+            dd(serialize($temporaryCredentials));
             
 
             // Serialize the temporary credentials before storing in the session
-            Session::put('oauth.temp', serialize($temporaryCredentials));
+            // Session::put('oauth.temp', serialize($temporaryCredentials));
 
             // dd(Session::get('oauth.temp'));
 
@@ -41,7 +41,7 @@ class TwitterController extends Controller
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
 
             // Redirect to the home page with an error message
-            // dd($e->getMessage());
+            dd($e->getMessage());
             return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
         }
     }
@@ -52,7 +52,7 @@ class TwitterController extends Controller
             // Retrieve the serialized temporary credentials from the session
             $serializedTempCredentials = Session::get('oauth.temp');
 
-            dd($serializedTempCredentials);
+            // dd($serializedTempCredentials);
             // Check if the session key exists and unserialize the temporary credentials
             if ($serializedTempCredentials) {
                 $temporaryCredentials = unserialize($serializedTempCredentials);
