@@ -74,12 +74,15 @@ class TwitterController extends Controller
             session(['twitter_oauth_token' => $tokenCredentials]);
     
             // Redirect to the home page with a success message
+
+            dd($tokenCredentials);
             return redirect('/')->with('status', 'Successfully authenticated with Twitter!');
         } catch (\Exception $e) {
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
     
             // Redirect to the home page with an error message
+            dd($e->getMessage());
             return redirect('/')->with('error', $e->getMessage());
         }
     }
