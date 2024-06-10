@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use League\OAuth1\Client\Credentials\TemporaryCredentials;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
-use Illuminate\Support\Facades\Session;
 
 class TwitterController extends Controller
 {
@@ -22,6 +22,8 @@ class TwitterController extends Controller
             // Obtain temporary credentials from Twitter
             $temporaryCredentials = $this->server->getTemporaryCredentials();
 
+            dd($temporaryCredentials);
+
             // Serialize the temporary credentials before storing in the session
             Session::put('oauth.temp', serialize($temporaryCredentials));
 
@@ -35,6 +37,7 @@ class TwitterController extends Controller
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
 
             // Redirect to the home page with an error message
+            dd($e->getMessage());
             return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
         }
     }
