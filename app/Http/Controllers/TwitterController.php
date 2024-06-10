@@ -20,42 +20,35 @@ class TwitterController extends Controller
 
     public function redirectToProvider()
     {
-
         DB::beginTransaction();
         try {
             // Obtain temporary credentials from Twitter
             $temporaryCredentials = $this->server->getTemporaryCredentials();
-
-            // dd(serialize($temporaryCredentials));
-            
-
-            // Serialize the temporary credentials before storing in the session
-            // Session::put('oauth.temp', serialize($temporaryCredentials));
-
-            // dd(Session::get('oauth.temp'));
+    
+            // Serialize the temporary credentials before storing in the database
             Account::create([
                 'nama_sosmed' => 'twitter oauth',
                 'token' => "default_token",
                 'temp_credentials' => serialize($temporaryCredentials),
-                "stat   us" => "Inactive"
+                "status" => "Inactive"
             ]);
-
-
-            \Log::info('Temporary credentials stored in session.', ['temp' => $temporaryCredentials]);
-            
-            // Log the temporary credentials for debugging purposes
-            // dd(Session::get('oauth.temp'));
-            
+    
+            // Commit the transaction
             DB::commit();
+    
+            // Log the temporary credentials for debugging purposes
+            \Log::info('Temporary credentials stored in database.', ['temp' => $temporaryCredentials]);
+            
             // Redirect to Twitter's authorization URL
             return redirect($this->server->getAuthorizationUrl($temporaryCredentials));
         } catch (\Exception $e) {
+            // Rollback the transaction in case of any error
+            DB::rollBack();
+    
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
-
+    
             // Redirect to the home page with an error message
-            DB::rollBack();
-            dd($e->getMessage());
             return redirect('/')->with('error', 'Failed to authenticate with Twitter.');
         }
     }
