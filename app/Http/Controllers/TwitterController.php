@@ -22,12 +22,13 @@ class TwitterController extends Controller
             // Obtain temporary credentials from Twitter
             $temporaryCredentials = $this->server->getTemporaryCredentials();
 
-            dd($temporaryCredentials);
+            // dd($temporaryCredentials);
 
             // Serialize the temporary credentials before storing in the session
             Session::put('oauth.temp', serialize($temporaryCredentials));
 
             // Log the temporary credentials for debugging purposes
+            dd(Session::get('oauth.temp'));
             \Log::info('Temporary credentials stored in session.', ['temp' => $temporaryCredentials]);
 
             // Redirect to Twitter's authorization URL
