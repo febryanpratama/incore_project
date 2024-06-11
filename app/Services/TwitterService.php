@@ -11,24 +11,34 @@ use Illuminate\Support\Facades\Auth;
 class TwitterService
 {
     protected $connection;
+    public $id;
 
     public function __construct()
     {
-        $accountTwitter = Account::where('app', 'Twitter')->where('user_id', Auth::user()->id)->where('status', 'Active')->first();
+
+        $accountTwitter = Account::where('app', 'Twitter')->where('user_id', 6)->where('status', 'Active')->first();
 
         $getToken = json_decode($accountTwitter->data);
 
         $this->connection = new TwitterOAuth(
             config('services.twitter.client_id'),
             config('services.twitter.client_secret'),
-            $getToken->token,
-            $getToken->tokenSecret
+            // $getToken->token,
+            // $getToken->tokenSecret,
+            config('services.twitter.bearer_token')
         );
+
+        $this->connection->setApiVersion('2');
     }
 
     public function getUserTimeline($userId)
     {
-        return $this->connection->get('statuses/user_timeline', ['user_id' => $userId]);
+        $response =  $this->connection->get('tweets', [
+            'max_results' => 10,
+            'tweet.fields' => 'created_at,text'
+        ]);
+
+        dd($response);
     }
 
     public function postTweet($status)
@@ -37,4 +47,6 @@ class TwitterService
     }
 
     // Add other methods to interact with Twitter API v2 as needed
+
+    
 }

@@ -33,6 +33,7 @@ return [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => env('TWITTER_REDIRECT_URI'),
+        'bearer_token' => env('TWITTER_BEARER_TOKEN'),
     ],
     'instagram' => [
         'client_id' => env('INSTAGRAM_CLIENT_ID'),
