@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
 
 // use Laravel\Socialite\Facades\Socialite;
@@ -35,11 +38,53 @@ class InstagramController extends Controller
             'name' => $user->getName(),
             'email' => $user->getEmail(),
             'avatar' => $user->getAvatar(),
+            'token' => $user->token,
         ];
 
         dd($instagramUser);
 
+        $data = [
+            'user' => [
+                "uid" => $user->getId(),
+                "nickname" => $user->getNickname( ),
+                "name" =>  $user->getName(),
+                "firstName" => null,
+                "lastName" => null,
+                "email" => null,
+                "location" => "",
+                "description" => null,
+                "imageUrl" => $user->getAvatar(),
+                "token" => $user->token,
+            ]
+        ];
+
+        $account = Account::create([
+            'user_id' => Auth::user()->id,
+            'nama_sosmed' => 'instagram oauth',
+            'token' => $user->token,
+            'data' => json_encode($data),
+            'status' => 'Active',
+            'app' => "Instagram",
+            'token_serialize_tweet' => null,
+            'temp_credentials' => null,
+        ]);
+
         // TODO: Handle the authenticated user, e.g., save to database or session
+
         // return redirect()->route('home')->with('instagramUser', $instagramUser);
+    }
+
+    protected function fetchInstagramFeed($accessToken)
+    {
+        $response = Http::get('https://graph.instagram.com/me/media', [
+            'fields' => 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
+            'access_token' => $accessToken,
+        ]);
+
+        if ($response->successful()) {
+            return $response->json()['data'];
+        }
+
+        return [];
     }
 }
