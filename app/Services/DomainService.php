@@ -38,9 +38,9 @@ class DomainService {
             
             // Handle the response (for example, outputting it)
             $data = json_decode($response, true);
-            // dd($data);
+            dd($data);
 
-            dd($data['data']);
+            // dd($data['data']);
             if($data['status'] == true){
                 // dd("true");
                 return [
