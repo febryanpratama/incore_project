@@ -40,7 +40,7 @@ class DomainService {
             $data = json_decode($response, true);
             // dd($data);
 
-            // dd($data['data']);
+            dd($data['data']);
             if($data['status'] == true){
                 // dd("true");
                 return [
