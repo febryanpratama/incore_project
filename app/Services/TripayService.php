@@ -166,7 +166,7 @@ class TripayService {
 
         $response = json_decode($response, true);
 
-        // dd($response);
+        dd($response);
         return [
             'status' => true,
             'message' => 'Success',
