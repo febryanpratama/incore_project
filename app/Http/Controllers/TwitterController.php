@@ -107,7 +107,7 @@ class TwitterController extends Controller
             Session::put('twitter_oauth_token', $tokenCredentials);
 
             $secret = [
-                'user' => json_encode($user),
+                'user' => $user,
                 'token' => [
                     'identifier' => $tokenCredentials->getIdentifier(),
                     'secret' => $tokenCredentials->getSecret()
