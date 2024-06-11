@@ -37,6 +37,8 @@ class InstagramController extends Controller
             'avatar' => $user->getAvatar(),
         ];
 
+        dd($instagramUser);
+
         // TODO: Handle the authenticated user, e.g., save to database or session
         // return redirect()->route('home')->with('instagramUser', $instagramUser);
     }
