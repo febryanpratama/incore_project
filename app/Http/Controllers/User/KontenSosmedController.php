@@ -24,10 +24,10 @@ class KontenSosmedController extends Controller
 
         $responseInstagram = $this->instagramService->getFeed();
 
-        $responseTwitter = $this->twitterService->getUserTimeline(1716803916443336704);
+        $responseTwitter = $this->twitterService->getUserTimeline('1716803916443336704');
         
 
-        dd($responseTwitter);
+        // dd($responseTwitter);
 
         // dd($responseInstagram);
 

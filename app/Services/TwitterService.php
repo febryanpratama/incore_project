@@ -20,12 +20,14 @@ class TwitterService
 
         $getToken = json_decode($accountTwitter->data);
 
+        // dd(config('services.twitter.bearer_token'));
+
         $this->connection = new TwitterOAuth(
             config('services.twitter.client_id'),
             config('services.twitter.client_secret'),
-            // $getToken->token,
-            // $getToken->tokenSecret,
-            config('services.twitter.bearer_token')
+            $getToken->token,
+            $getToken->tokenSecret,
+            // config('services.twitter.bearer_token')
         );
 
         $this->connection->setApiVersion('2');
@@ -33,12 +35,12 @@ class TwitterService
 
     public function getUserTimeline($userId)
     {
-        $response =  $this->connection->get('tweets', [
-            'max_results' => 10,
-            'tweet.fields' => 'created_at,text'
-        ]);
+        $response = $this->connection->post('statuses/update', ['status' => "Hello World!"]);
 
-        dd($response);
+
+        return $response;
+
+        // dd($response);
     }
 
     public function postTweet($status)
