@@ -45,7 +45,7 @@ class TripayService {
 
             $response = $this->baseApiPost('https://tripay.co.id/api-sandbox/transaction/create', $postData);
 
-            dd($response);
+            // dd($response);
             
             $respCreateTransaction = Transaction::create([
                 'reference' => $response['data']['reference'],
@@ -166,7 +166,7 @@ class TripayService {
 
         $response = json_decode($response, true);
 
-        dd($response);
+        // dd($response);
         return [
             'status' => true,
             'message' => 'Success',
