@@ -71,7 +71,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'user',
-    'middleware' => ['auth', 'role:user'],
+    'middleware' => ['auth', 'role:user', 'web'],
 ],function(){
     Route::prefix('set-template')->group(function(){
         Route::get('/', [SetTemplateController::class, 'setTemplate']);
@@ -101,6 +101,7 @@ Route::group([
 
 Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
 Route::get('auth/instagram', [InstagramController::class, 'redirectToProvider']);
+
 Route::middleware(['web'])->group(function(){
     Route::get('auth/instagram/callback', [InstagramController::class, 'handleProviderCallback']);
 });
