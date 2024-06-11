@@ -54,15 +54,20 @@ class TwitterController extends Controller
                     ]);
                 }
                 
-                $temporaryCredentials = serialize($temporaryCredentials);
+                // $temporaryCredentials = serialize($temporaryCredentials);
 
             });
+
+            $account = Account::where('status', 'Inactive')->where('user_id', Auth::user()->id)->first();
                 
+
+            $temp = unserialize($account->temp_credentials);
                 // Log the temporary credentials for debugging purposes
-                \Log::info('Temporary credentials stored in database.', ['temp' => $temporaryCredentials]);
-                
-                // Redirect to Twitter's authorization URL
-                return redirect($this->server->getAuthorizationUrl(unserialize($temporaryCredentials)));
+            \Log::info('Temporary credentials stored in database.', ['temp' => $temp]);
+            
+            // Redirect to Twitter's authorization URL
+            return redirect($this->server->getAuthorizationUrl($temp));
+
         } catch (\Exception $e) {
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
