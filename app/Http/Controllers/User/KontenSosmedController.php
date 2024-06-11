@@ -21,7 +21,7 @@ class KontenSosmedController extends Controller
 
         $responseInstagram = $this->instagramService->getFeed();
 
-        // dd($responseInstagram);
+        dd($responseInstagram);
 
         $ListData = [];
 
