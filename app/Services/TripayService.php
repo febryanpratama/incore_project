@@ -41,6 +41,8 @@ class TripayService {
             ];
 
             $response = $this->baseApiPost('https://tripay.co.id/api-sandbox/transaction/create', $postData);
+
+            dd($response);
             
             $respCreateTransaction = Transaction::create([
                 'reference' => $response['data']['reference'],
@@ -72,8 +74,10 @@ class TripayService {
                 'template_id' => $data['template_id'],
             ]);
 
+
+
             return $respCreateTransaction;
-            
+
         } catch (\Throwable $th) {
             //throw $th;
 
