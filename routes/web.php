@@ -103,6 +103,7 @@ Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
 Route::get('auth/instagram', [InstagramController::class, 'redirectToProvider']);
 
 Route::middleware(['web'])->group(function(){
+    Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
     Route::get('auth/instagram/callback', [InstagramController::class, 'handleProviderCallback']);
 });
 
