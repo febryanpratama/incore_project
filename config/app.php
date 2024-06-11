@@ -167,6 +167,9 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\TwitterServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
+        App\Providers\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...

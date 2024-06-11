@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Front\GetTemplateController;
+use App\Http\Controllers\InstagramController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\User\AccountSosmedController;
@@ -99,6 +100,8 @@ Route::group([
 
 
 Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
+Route::get('auth/instagram', [InstagramController::class, 'redirectToProvider']);
+
 // Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 
 
