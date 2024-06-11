@@ -22,7 +22,7 @@ class InstagramService {
         ]);
 
         if ($response->successful()) {
-            dd($response->json()['data']);
+            // dd($response->json()['data']);
             return $response->json()['data'];
         }
 

@@ -21,12 +21,26 @@ class KontenSosmedController extends Controller
 
         $responseInstagram = $this->instagramService->getFeed();
 
-        dd($responseInstagram);
+        // dd($responseInstagram);
 
-        $data = Konten::get();
+        $ListData = [];
+
+        foreach($responseInstagram as $data){
+            $ListData[] = [
+                'caption' => $data['caption'],
+                'image' => $data['media_url'],
+                'app' => 'Instagram',
+                'url' => $data['permalink'],
+                'date_jadwal' => null,
+                'status_post' => 'Instan',
+                'status_posting' => 'Berhasil'
+            ];
+        }
+
+        // $data = Konten::get();
 
         return view('user.kontensosmed.index', [
-            'data' => $data
+            'data' => $ListData
         ]);
     }
 
