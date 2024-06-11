@@ -25,7 +25,8 @@ class TwitterController extends Controller
 
         // dd($user);
 
-        dd($user->token, $user->tokenSecret);
+        
+        dd($user,$user->token, $user->tokenSecret);
         // $user->token
         // $user->tokenSecret
 
