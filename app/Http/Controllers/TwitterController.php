@@ -26,7 +26,7 @@ class TwitterController extends Controller
     {
         try {
             // Obtain temporary credentials from Twitter
-            $temporaryCredentials = null;
+            // $temporaryCredentials = null;
     
             // Wrap the process in a transaction and lock the row to avoid race condition
             DB::transaction(function () use (&$temporaryCredentials) {
@@ -43,6 +43,7 @@ class TwitterController extends Controller
                 } else {
 
                     $temporaryCredentials = $this->server->getTemporaryCredentials();
+
                     Account::create([
                         'user_id' => Auth::user()->id,
                         'nama_sosmed' => 'twitter oauth',
@@ -52,13 +53,16 @@ class TwitterController extends Controller
                         'status' => 'Inactive'
                     ]);
                 }
-            \Log::info('Temporary credentials stored in database.', ['temp' => $temporaryCredentials]);
-            
-            // Redirect to Twitter's authorization URL
-            return redirect($this->server->getAuthorizationUrl(unserialize($temporaryCredentials)));
+                
+                $temporaryCredentials = serialize($temporaryCredentials);
+
             });
-    
-            // Log the temporary credentials for debugging purposes
+                
+                // Log the temporary credentials for debugging purposes
+                \Log::info('Temporary credentials stored in database.', ['temp' => $temporaryCredentials]);
+                
+                // Redirect to Twitter's authorization URL
+                return redirect($this->server->getAuthorizationUrl(unserialize($temporaryCredentials)));
         } catch (\Exception $e) {
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
