@@ -36,7 +36,7 @@
                         <div class="card">
                             <div class="card-body text-center">
 
-                                <img src="{{ $ }}" class="img-thumbnail" style="border-radius: 50px" alt="">
+                                <img src="" class="img-thumbnail" style="border-radius: 50px" alt="">
                                 <h5 class="text-center text-uppercase mt-3 mb-4">{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</h5>
                                 <h5 class="text-center text-uppercase mt-3 mb-4">{{ $twitter->user->name }}</h5>
                                 <div class="d-flex justify-content-between">
