@@ -21,7 +21,7 @@ class KontenSosmedController extends Controller
 
         $responseInstagram = $this->instagramService->getFeed();
 
-        dd($responseInstagram[0]['caption']);
+        // dd($responseInstagram[0]['caption']);
 
         $ListData = [];
 
@@ -37,6 +37,8 @@ class KontenSosmedController extends Controller
                 'status_posting' => 'Menunggu'
             ];
         }
+
+        dd($ListData);
 
         // $data = Konten::get();
 
