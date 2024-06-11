@@ -11,8 +11,11 @@ use Illuminate\Support\Str;
 class TripayService {
     
     public function getChannel(){
+
+
         $response = $this->baseApi('https://tripay.co.id/api-sandbox/merchant/payment-channel', 'GET');
         
+        // dd($response);
         return $response;
     }
 

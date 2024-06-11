@@ -234,9 +234,9 @@
                                     <div class="panel vstack gap-2 lg:gap-4 p-2 lg:p-4 bg-gray-50 dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800 rounded">
                                         <div class="vstack gap-1 lg:gap-2 fs-6">
                                             {{-- {{ dd($payment) }} --}}
-                                            {{-- @foreach ($payment as $key) --}}
+                                            @foreach ($payment as $key)
                                             {{-- {{ dd($key['code']) }} --}}
-                                            <div class="w-100">
+                                            {{-- <div class="w-100">
                                                 <div class="panel p-2 bg-white border-gray-100 w-100 rounded dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800">
                                                     <div class="form-check">
                                                         <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="BRI" id="BANK BRI - 039301001433302" checked="">
@@ -251,16 +251,16 @@
                                                         <label class="form-check-label fw-bold" for="BANK MANDIRI - 1640015155155">BANK MANDIRI - 1640015155155</label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            {{-- <div class="w-100">
+                                            </div> --}}
+                                            <div class="w-100">
                                                 <div class="panel p-2 bg-white border-gray-100 w-100 rounded dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-800">
                                                     <div class="form-check">
-                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="{{ $key['code'] }}" id="BANK BRI - 039301001433302" checked="">
-                                                        <label class="form-check-label fw-bold" for="BANK BRI - 039301001433302">BANK BRI - 039301001433302</label>
+                                                        <input class="form-check-input dark:bg-gray-100 dark:bg-opacity-5 dark:text-white dark:border-gray-600" form="myform" type="radio" name="payment_method" value="{{ $key['code'] }}" id="{{ $key['name'] }}" checked="">
+                                                        <label class="form-check-label fw-bold" for="{{ $key['name'] }}">{{ $key['name'] }}</label>
                                                     </div>
                                                 </div>
-                                            </div> --}}
-                                            {{-- @endforeach --}}
+                                            </div>
+                                            @endforeach
                                         </div>
                                         <p class="text-dark dark:text-white text-opacity-60">Data Pribadi Yang Disimpan akan kami gunakan untuk melakukan improvement dimasa yang akan datang</p>
                                         <button class="btn btn-md xl:btn-lg btn-primary text-white" type="submit" form="myform">Pesan Sekarang</button>
