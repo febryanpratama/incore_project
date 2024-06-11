@@ -30,7 +30,7 @@
                     @php
                         $account = json_decode($item->data);
 
-                        dd($account, $account->user->name);
+                        // dd($account, $account->user->name);
                     @endphp
                     <div class="col-md-4 stretch-card grid-margin grid-margin-md-0 mb-5">
                         <div class="card">
@@ -38,10 +38,10 @@
 
                                 <img src="" class="img-thumbnail" style="border-radius: 50px" alt="">
                                 <h5 class="text-center text-uppercase mt-3 mb-4">{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</h5>
-                                <h5 class="text-center text-uppercase mt-3 mb-4">{{ $twitter->user->name }}</h5>
+                                <h5 class="text-center text-uppercase mt-3 mb-4">{{ $account->user->name }}</h5>
                                 <div class="d-flex justify-content-between">
-                                    <p>{{ @$twitter->user->nickname }}</p>
-                                    <p>{{ @$twitter->user->description }}</p>
+                                    <p>{{ @$account->user->nickname }}</p>
+                                    <p>{{ @$account->user->description }}</p>
                                 </div>
                                 <div class="text-center">
                                     @if ($item->app == "Instagram")
