@@ -102,7 +102,7 @@ class TwitterController extends Controller
             // Store the token credentials in the session
             Session::put('twitter_oauth_token', $tokenCredentials);
 
-            dd($user, json_encode($user), $tokenCredentials, json_encode($tokenCredentials), $tokenCredentials->getIdentifier(), $tokenCredentials->getSecret(), $tokenCredentials->getCallbackUrl(), $tokenCredentials->getUserId(), $tokenCredentials->getScreenName(), $tokenCredentials->getExtraParams());
+            dd($user, json_encode($user), $tokenCredentials, json_encode($tokenCredentials), $tokenCredentials->getIdentifier(), $tokenCredentials->getSecret() );
 
 
             // Redirect to the home page with a success message
