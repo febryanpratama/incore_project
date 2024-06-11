@@ -8,8 +8,13 @@
                 <div class="col-md-12 d-flex justify-content-between">
                     <h4>Account Sosmed</h4>
                     {{-- <button class="btn btn-sm btn-primary">Posting Konten</button> --}}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Add Account Sosmed
+                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> --}}
+                        <a href="{{ url('auth/twitter') }}" class="btn btn-primary">
+                            Add Account Twitter
+                        </a>
+                    {{-- </button>   --}}
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Account Instagram
                     </button>  
                 </div>
             </div>
