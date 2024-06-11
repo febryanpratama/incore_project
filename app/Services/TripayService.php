@@ -20,7 +20,7 @@ class TripayService {
 
         // $apiKey       = env('TRIPAY_API_KEY');
 
-        try {
+        // try {
             //code...
             $privateKey   = env('TRIPAY_PRIVATE_KEY');
             $merchantCode = env('TRIPAY_MERCHANT_CODE');
@@ -78,16 +78,16 @@ class TripayService {
 
             return $respCreateTransaction;
 
-        } catch (\Throwable $th) {
-            //throw $th;
+        // } catch (\Throwable $th) {
+        //     //throw $th;
 
-            dd($th->getMessage());
+        //     dd($th->getMessage());
 
-            return [
-                'status' => false,
-                'message' => $th->getMessage()
-            ];
-        }
+        //     return [
+        //         'status' => false,
+        //         'message' => $th->getMessage()
+        //     ];
+        // }
     }
 
     private function baseApi($url, $method, $data=[]){
