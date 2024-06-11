@@ -33,7 +33,9 @@ class LandingController extends Controller
         $response = $this->domainService->checkListDomain($request->all());
 
         if($response['status'] == false){
-            return redirect()->back()->with('error', $response['message']);
+
+            dd($response['message']);
+            // return redirect()->back()->with('error', $response['message']);
         }
 
         $template = Template::get();
