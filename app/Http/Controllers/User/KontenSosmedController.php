@@ -4,14 +4,24 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Konten;
+use App\Services\InstagramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class KontenSosmedController extends Controller
 {
     //
+    protected $instagramService; 
+    public function __construct(InstagramService $instagramService)
+    {
+        $this->instagramService = $instagramService;
+    }
 
     public function index(){
+
+        $responseInstagram = $this->instagramService->getFeed();
+
+        dd($responseInstagram);
 
         $data = Konten::get();
 
@@ -19,6 +29,8 @@ class KontenSosmedController extends Controller
             'data' => $data
         ]);
     }
+
+
     public function store(Request $request){
         // dd($request->all());
         $validator = Validator::make($request->all(), [
@@ -60,4 +72,15 @@ class KontenSosmedController extends Controller
 
         return back()->withSuccess('Data berhasil ditambahkan');
     }
+
+    // private function getInstagramToken(){
+    //     $account = Account::where('user_id', Auth::user()->id)
+    //         ->where('app', 'Instagram')
+    //         ->where('status', 'Active')
+    //         ->first();        
+
+    //     $getToken = json_decode($account->data);
+
+    //     return $getToken->user->token;
+    // }
 }

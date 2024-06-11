@@ -12,10 +12,14 @@
                         <a href="{{ url('auth/twitter') }}" class="btn btn-primary">
                             Add Account Twitter
                         </a>
+
+                        <a href="{{ url('auth/instagram') }}" class="btn btn-primary">
+                            Add Account Instagram
+                        </a>
                     {{-- </button>   --}}
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add Account Instagram
-                    </button>  
+                    </button>   --}}
                 </div>
             </div>
         </div>

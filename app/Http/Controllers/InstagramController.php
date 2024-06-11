@@ -32,16 +32,16 @@ class InstagramController extends Controller
         $user = Socialite::driver('instagram')->user();
 
         // You can access user information like this:
-        $instagramUser = [
-            'id' => $user->getId(),
-            'nickname' => $user->getNickname(),
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'avatar' => $user->getAvatar(),
-            'token' => $user->token,
-        ];
+        // $instagramUser = [
+        //     'id' => $user->getId(),
+        //     'nickname' => $user->getNickname(),
+        //     'name' => $user->getName(),
+        //     'email' => $user->getEmail(),
+        //     'avatar' => $user->getAvatar(),
+        //     'token' => $user->token,
+        // ];
 
-        dd($instagramUser);
+        // dd($instagramUser);
 
         $data = [
             'user' => [
@@ -71,17 +71,24 @@ class InstagramController extends Controller
 
         // TODO: Handle the authenticated user, e.g., save to database or session
 
-        // return redirect()->route('home')->with('instagramUser', $instagramUser);
+        return redirect('user/account-sosmed')->withSuccess("Success connect to Instagram");
     }
 
     protected function fetchInstagramFeed($accessToken)
     {
+        $account = Account::where('user_id', Auth::user()->id)
+            ->where('app', 'Instagram')
+            ->where('status', 'Active')
+            ->first();        
+
+        $getToken = json_decode($account->data);
         $response = Http::get('https://graph.instagram.com/me/media', [
             'fields' => 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
             'access_token' => $accessToken,
         ]);
 
         if ($response->successful()) {
+            dd($response->json()['data']);
             return $response->json()['data'];
         }
 
