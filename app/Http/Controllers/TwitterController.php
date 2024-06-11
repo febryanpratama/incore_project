@@ -9,14 +9,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use League\OAuth1\Client\Credentials\TemporaryCredentials;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
+use App\Services\TwitterService;
 
 class TwitterController extends Controller
 {
     protected $server;
+    protected $twitterService;
 
-    public function __construct(TwitterServer $server)
+    public function __construct(TwitterServer $server, TwitterService $twitterService)
     {
         $this->server = $server;
+        $this->twitterService = $twitterService;
     }
 
     public function redirectToProvider()
@@ -108,14 +111,15 @@ class TwitterController extends Controller
 
             $secret = [
                 'user' => $user,
-                'token' => [
-                    'identifier' => $tokenCredentials->getIdentifier(),
-                    'secret' => $tokenCredentials->getSecret()
-                ],
+                // 'token' => [
+                //     'identifier' => $tokenCredentials->getIdentifier(),
+                //     'secret' => $tokenCredentials->getSecret()
+                // ],
             ];
 
             $account->update([
                 'data' => json_encode($secret),
+                'token_serialize_tweet' => serialize($tokenCredentials),
                 'status' => 'Active'
             ]);
             
@@ -134,6 +138,54 @@ class TwitterController extends Controller
             return redirect('user/account-sosmed')->with('error', $e->getMessage());
         }
     }
+
+
+    public function tweet(Request $request)
+    {
+        $this->validate($request, [
+            'status' => 'required|max:280',
+        ]);
+
+        // Retrieve token credentials from session or storage
+        $tokenCredentials = session('twitter_oauth_token');
+
+        $result = $this->twitterService->tweet($tokenCredentials, $request->input('status'));
+
+        if ($result) {
+            return redirect('/')->with('status', 'Tweet posted successfully!');
+        }
+
+        return redirect('/')->with('error', 'Failed to post tweet.');
+    }
+
+    public function fetchTweets()
+    {
+        // Retrieve token credentials from session or storage
+
+        $account = Account::where('status', 'Active')->where('user_id', Auth::user()->id)->first();
+
+        dd($account);
+        if(!$account){
+            return redirect('user/account-sosmed')->with('error', 'Akun Twitter belum terhubung');
+        }
+
+        $tokenCredentials = json_decode($account->data)->token;
+
+        // dd(unserialize($tokenCredentials));
+
+        $data = $this->twitterService->fetchTweets(unserialize($tokenCredentials));
+
+        // dd($tweets);
+        // if ($tweets) {
+        //     return view('tweets', ['tweets' => $tweets]);
+        // }
+
+        return view('user.kontensosmed.index', [
+            'data' => $data
+        ]);
+    }
+
+
 
     // Rest of the controller methods
 }

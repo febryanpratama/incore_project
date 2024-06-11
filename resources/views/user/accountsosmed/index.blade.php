@@ -17,11 +17,25 @@
         <div class="card-body" style="background-color: #f1ebe0">
             <div class="row">
                 @foreach ($data as $item)
+
+                    @php
+                        if ($item->app == 'Twitter') {
+                            # code...
+                            $twitter = json_decode($item->data);
+                            // dd($twitter->user);
+                        }
+                    @endphp
                     <div class="col-md-4 stretch-card grid-margin grid-margin-md-0 mb-5">
                         <div class="card">
-                            <div class="card-body">
-                                <img src="{{ asset('images/'.$item->image) }}" class="img-fluid" alt="">
+                            <div class="card-body text-center">
+
+                                <img src="{{ $twitter->user->imageUrl }}" class="img-thumbnail" style="border-radius: 50px" alt="">
                                 <h5 class="text-center text-uppercase mt-3 mb-4">{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</h5>
+                                <h5 class="text-center text-uppercase mt-3 mb-4">{{ $twitter->user->name }}</h5>
+                                <div class="d-flex justify-content-between">
+                                    <p>{{ $twitter->user->nickname }}</p>
+                                    <p>{{ $twitter->user->description }}</p>
+                                </div>
                                 <div class="text-center">
                                     @if ($item->app == "Instagram")
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
@@ -35,20 +49,8 @@
                                         </svg>
                                     @endif
                                 </div>
-
-                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award text-primary icon-xxl d-block mx-auto my-3"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg> --}}
-                                {{-- <h3 class="text-center ">$40</h3> --}}
-                                <div class="text-center mb-2 text-danger">
-                                    {{ $item->status_post ?? "Terjadwal" }}
-                                </div>
                                 <hr>
-                                {{-- <p class="text-muted ">{{ $item->status_post ?? "Terjadwal" }}</p> --}}
-                                <h6 class="text-muted text-center mb-2 fw-normal">{{ $item->caption }}</h6>
-                                
-                                <div class="d-grid">
-                                    {{-- <div class="badge badge-danger">{{ $item->url ?? "Url saat ini belum tersedia" }}</div> --}}
-                                    <button class="btn btn-primary mt-4">{{ $item->url ?? "Url saat ini belum tersedia" }}</button>
-                                </div>
+                                <button class="btn btn-danger">Putuskan Koneksi</button>
                             </div>
                         </div>
                     </div>
