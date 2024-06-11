@@ -32,6 +32,10 @@ class LandingController extends Controller
 
         $response = $this->domainService->checkListDomain($request->all());
 
+        if($response['status'] == false){
+            return redirect()->back()->with('error', $response['message']);
+        }
+
         $template = Template::get();
 
         $responseTripay = $this->tripayService->getChannel();
