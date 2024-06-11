@@ -47,6 +47,7 @@ class TwitterController extends Controller
                         'user_id' => Auth::user()->id,
                         'nama_sosmed' => 'twitter oauth',
                         'token' => "default_token",
+                        'app' => 'Twitter',
                         'temp_credentials' => serialize($temporaryCredentials),
                         'status' => 'Inactive'
                     ]);
@@ -164,18 +165,18 @@ class TwitterController extends Controller
 
         $account = Account::where('status', 'Active')->where('user_id', Auth::user()->id)->first();
 
-        dd($account);
+        // dd($account);
         if(!$account){
             return redirect('user/account-sosmed')->with('error', 'Akun Twitter belum terhubung');
         }
 
-        $tokenCredentials = json_decode($account->data)->token;
+        $tokenCredentials = $account->token_serialize_tweet;
 
         // dd(unserialize($tokenCredentials));
 
         $data = $this->twitterService->fetchTweets(unserialize($tokenCredentials));
 
-        // dd($tweets);
+        dd($data);
         // if ($tweets) {
         //     return view('tweets', ['tweets' => $tweets]);
         // }

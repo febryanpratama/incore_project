@@ -14,7 +14,7 @@ class TwitterService
     public function __construct(TwitterServer $server)
     {
         $this->server = $server;
-        $this->client = new Client(['base_uri' => 'https://api.twitter.com/1.1/']);
+        $this->client = new Client(['base_uri' => 'https://api.twitter.com/']);
     }
 
     protected function getOAuthHeaders($method, $url, $tokenCredentials, $params = [])
@@ -43,22 +43,34 @@ class TwitterService
         }
     }
 
-    public function fetchTweets($tokenCredentials, $count = 10)
+    public function fetchTweets($tokenCredentials)
     {
-        try {
-            $url = 'statuses/user_timeline.json';
-            $params = ['count' => $count];
-            $headers = $this->getOAuthHeaders('GET', $url, $tokenCredentials, $params);
+        // dd($tokenCredentials);
+        // Prepare the headers for the request
+        $uri = '2/users';
+        $method = 'GET';
+        $params = [
+            'id' => '1716803916443336704'
+            // 'tweet.fields' => 'created_at,1716803916443336704,text',
+            // 'ids' => null // Replace with actual tweet IDs
+        ];
 
-            $response = $this->client->get($url, [
-                'headers' => $headers,
-                'query' => $params,
-            ]);
+        $url = 'https://api.twitter.com/2/users/' . http_build_query($params);
 
-            return json_decode($response->getBody(), true);
-        } catch (\Exception $e) {
-            Log::error('Twitter API Error: '.$e->getMessage());
-            return false;
-        }
+        // dd($url);
+        // Get the OAuth1.0a authorization header
+        // $headers = $this->server->getHeaders($tokenCredentials, $method, $url, $params);
+        $headers = $this->server->getHeaders($tokenCredentials, 'GET', $url);
+
+        // dd($headers);
+        // Make the request to the Twitter API v2
+        $response = $this->client->request($method, $uri, [
+            'headers' => $headers,
+        ]);
+
+
+        dd($response);
+        // Decode and return the response
+        return json_decode($response->getBody()->getContents(), true);
     }
 }
