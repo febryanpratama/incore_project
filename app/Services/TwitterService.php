@@ -5,6 +5,8 @@ namespace App\Services;
 namespace App\Services;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Account;
+use Illuminate\Support\Facades\Auth;
 
 class TwitterService
 {
@@ -12,11 +14,15 @@ class TwitterService
 
     public function __construct()
     {
+        $accountTwitter = Account::where('app', 'Twitter')->where('user_id', Auth::user()->id)->where('status', 'Active')->first();
+
+        $getToken = json_decode($accountTwitter->data);
+
         $this->connection = new TwitterOAuth(
             config('services.twitter.client_id'),
             config('services.twitter.client_secret'),
-            session('twitter_oauth_token'),
-            session('twitter_oauth_token_secret')
+            $getToken->token,
+            $getToken->tokenSecret
         );
     }
 

@@ -5,21 +5,29 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Konten;
 use App\Services\InstagramService;
+use App\Services\TwitterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class KontenSosmedController extends Controller
 {
     //
-    protected $instagramService; 
-    public function __construct(InstagramService $instagramService)
+    protected $instagramService;
+    protected $twitterService; 
+    public function __construct(InstagramService $instagramService, TwitterService $twitterService)
     {
         $this->instagramService = $instagramService;
+        $this->twitterService = $twitterService;
     }
 
     public function index(){
 
         $responseInstagram = $this->instagramService->getFeed();
+
+        $responseTwitter = $this->twitterService->getUserTimeline(1716803916443336704);
+        
+
+        dd($responseTwitter);
 
         // dd($responseInstagram);
 
