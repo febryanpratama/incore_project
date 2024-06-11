@@ -25,8 +25,20 @@ class TwitterController extends Controller
 
         // dd($user);
 
+        $json = [
+            'token' => $user->token,
+            'tokenSecret' => $user->tokenSecret,
+            'id' => $user->id,
+            'nickname' => $user->nickname,
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'avatar_original' => $user->avatar_original,
+        ];
+
+        // dd($json);
         
-        dd($user,$user->token, $user->tokenSecret);
+        dd($json,$user,$user->token, $user->tokenSecret);
         // $user->token
         // $user->tokenSecret
 
