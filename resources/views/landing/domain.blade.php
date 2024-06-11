@@ -24,7 +24,7 @@
                     <div style="transform: translateY(0px); opacity: 1;" class="uc-first-column">
                         <div class="panel vstack justify-end items-end gap-1 p-3 rounded lg:rounded-2 bg-secondary dark:bg-gray-300 dark:bg-opacity-10">
                             <div class="vstack gap-narrow">
-                                <h5 class="h6 lg:h5 m-0">Usefullairdrop.com</h5>
+                                <h5 class="h6 lg:h5 m-0">lexxa.com</h5>
                                 <span class="fs-6 text-dark dark:text-white text-opacity-70">Rp. 270.000</span>
                             </div>
                             <a class="uc-link fs-7 fw-bold d-inline-flex items-center gap-narrow border-bottom pb-narrow" href="javascript:void(0)">
@@ -263,7 +263,7 @@
                                             {{-- @endforeach --}}
                                         </div>
                                         <p class="text-dark dark:text-white text-opacity-60">Data Pribadi Yang Disimpan akan kami gunakan untuk melakukan improvement dimasa yang akan datang</p>
-                                        <button class="btn btn-md xl:btn-lg btn-primary text-white" type="submit" form="myform"></button>
+                                        <button class="btn btn-md xl:btn-lg btn-primary text-white" type="submit" form="myform">Pesan Sekarang</button>
                                     </div>
                                 </div>
                             </div>
