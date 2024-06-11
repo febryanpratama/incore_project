@@ -30,7 +30,7 @@
                     @php
                         $account = json_decode($item->data);
 
-                        dd($account);
+                        dd($account, $account->user->name);
                     @endphp
                     <div class="col-md-4 stretch-card grid-margin grid-margin-md-0 mb-5">
                         <div class="card">
