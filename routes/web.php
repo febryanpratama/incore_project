@@ -84,7 +84,7 @@ Route::group([
     });
 
     Route::prefix('konten-sosmed')->group(function(){
-        Route::get('/', [TwitterController::class, 'fetchTweets']);
+        Route::get('/', [KontenSosmedController::class, 'index']);
         Route::post('/', [KontenSosmedController::class, 'store']);
 
     });

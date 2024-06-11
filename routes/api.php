@@ -25,6 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('transaction/callback', [LandingController::class, 'callback']);
 Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 
-Route::middleware(['web'])->group(function(){
-    Route::get('auth/instagram/callback', [InstagramController::class, 'handleProviderCallback']);
-});
+// Route::middleware(['web'])->group(function(){
+//     Route::get('auth/instagram/callback', [InstagramController::class, 'handleProviderCallback']);
+// });
