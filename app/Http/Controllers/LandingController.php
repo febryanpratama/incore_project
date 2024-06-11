@@ -34,8 +34,8 @@ class LandingController extends Controller
 
         if($response['status'] == false){
 
-            dd($response['message']);
-            // return redirect()->back()->with('error', $response['message']);
+            // dd($response['message']);
+            return redirect()->back()->with('error', $response['message']);
         }
 
         $template = Template::get();
