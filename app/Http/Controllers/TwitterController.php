@@ -36,7 +36,7 @@ class TwitterController extends Controller
                         'temp_credentials' => serialize($this->server->getTemporaryCredentials()),
                     ]);
                     $temporaryCredentials = $account->temp_credentials;
-
+                    
                 } else {
 
                     $temporaryCredentials = $this->server->getTemporaryCredentials();
@@ -107,7 +107,7 @@ class TwitterController extends Controller
             Session::put('twitter_oauth_token', $tokenCredentials);
 
             $secret = [
-                'user' => $user,
+                'user' => json_encode($user),
                 'token' => [
                     'identifier' => $tokenCredentials->getIdentifier(),
                     'secret' => $tokenCredentials->getSecret()
@@ -124,14 +124,14 @@ class TwitterController extends Controller
 
 
             // Redirect to the home page with a success message
-            return back()->with('status', 'Successfully authenticated with Twitter!');
+            return redirect('user/account-sosmed')->with('status', 'Successfully authenticated with Twitter!');
         } catch (\Exception $e) {
             // Log any errors that occur
             \Log::error('Twitter OAuth Error: ' . $e->getMessage());
 
             // Redirect to the home page with an error message
             dd($e->getMessage());
-            return back()->with('error', $e->getMessage());
+            return redirect('user/account-sosmed')->with('error', $e->getMessage());
         }
     }
 
