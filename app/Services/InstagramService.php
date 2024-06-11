@@ -18,7 +18,7 @@ class InstagramService {
         $getToken = json_decode($account->data);
         $response = Http::get('https://graph.instagram.com/me/media', [
             'fields' => 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
-            'access_token' => $accessToken,
+            'access_token' => $getToken->user->token,
         ]);
 
         if ($response->successful()) {
