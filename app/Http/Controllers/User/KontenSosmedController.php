@@ -25,15 +25,16 @@ class KontenSosmedController extends Controller
 
         $ListData = [];
 
-        foreach($responseInstagram as $data){
+        for($i = 0; $i < count($responseInstagram); $i++){
             $ListData[] = [
-                'caption' => $data['caption'],
-                'image' => $data['media_url'],
+                'id' => $responseInstagram[$i]['id'],
+                'caption' => $responseInstagram[$i]['caption'],
+                'image' => $responseInstagram[$i]['media_url'],
                 'app' => 'Instagram',
-                'url' => $data['permalink'],
-                'date_jadwal' => null,
-                'status_post' => 'Instan',
-                'status_posting' => 'Berhasil'
+                'url' => $responseInstagram[$i]['permalink'],
+                'date_jadwal' => $responseInstagram[$i]['timestamp'],
+                'status_post' => 'Terjadwal',
+                'status_posting' => 'Menunggu'
             ];
         }
 
