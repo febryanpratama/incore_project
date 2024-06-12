@@ -62,8 +62,8 @@
                                                 <img src="{{ asset('file_card/'.$item->file) }}" alt="">
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('admin/template/'.$item->template_id.'/navigation/'.$item->id.'/section') }}" class="btn btn-sm btn-primary">Set Section</a>
-                                                <a href="{{ url('admin/materi/detail-soal/'.$item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                                {{-- <a href="{{ url('admin/template/'.$item->template_id.'/navigation/'.$item->id.'/section') }}" class="btn btn-sm btn-primary">Set Section</a> --}}
+                                                <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
