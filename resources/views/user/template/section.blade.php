@@ -15,7 +15,7 @@
                                 <thead class="text-center">
                                     <tr class="text-center">
                                         <th class="text-center" width="5%">Nomor</th>
-                                        <th class="text-center">Nama Tag</th>
+                                        {{-- <th class="text-center">Nama Tag</th> --}}
                                         <th class="text-center">Value</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -25,7 +25,7 @@
                                     @foreach ($data as $key=>$item)
                                         <tr class="">
                                             <td class="text-center">{{ $key+1 }}</td>
-                                            <td class="text-center">{{ $item->nama_section }}</td>
+                                            {{-- <td class="text-center">{{ $item->nama_section }}</td> --}}
                                             <td class="text-center">
 
                                                 @if (App\Helpers\Format::getParam($item->nama_section, $item->navigation_id) == "NULL")
