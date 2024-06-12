@@ -101,9 +101,9 @@
                     <div class="container">
                         <div class="header-row">
                             <div id="logo">
-                                <a href="index.html">
-                                    <img class="logo-default" srcset="images/logo.png, images/logo@2x.png 2x" src="images/logo%402x.png" alt="Canvas Logo" />
-                                    <img class="logo-dark" srcset="images/logo-dark.png, images/logo-dark@2x.png 2x" src="images/logo-dark%402x.png" alt="Canvas Logo" />
+                                <a href="#">
+                                    <img class="logo-default" srcset="images/logo.png, images/logo@2x.png 2x" src="https://sosmed.indonesiacore.com/assets_template/images/logo@2x.png" alt="Canvas Logo" />
+                                    <img class="logo-dark" srcset="images/logo-dark.png, images/logo-dark@2x.png 2x" src="https://sosmed.indonesiacore.com/assets_template/images/logo-dark@2x.png" alt="Canvas Logo" />
                                 </a>
                             </div>
                             <div class="header-misc">
