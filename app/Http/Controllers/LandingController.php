@@ -194,13 +194,14 @@ class LandingController extends Controller
                 $data = [
                     'email' => $invoice->customer_email,
                 ];
+                
+                $update = UserTemplate::where('reference', $tripayReference)->update(['user_id' => $user->id]);
     
                 $user->assignRole('user');
     
                 $resp = \Mail::to($data['email'])->send(new \App\Mail\UserTransaction($data));
     
                 // Sync UserTemplate
-                $update = UserTemplate::where('reference', $tripayReference)->update(['user_id' => $user->id]);
     
                 return Response::json(['success' => true]);
             }

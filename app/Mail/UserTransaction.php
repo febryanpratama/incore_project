@@ -31,7 +31,10 @@ class UserTransaction extends Mailable
      */
     public function build()
     {
-        return $this->view('email.payment_transaction', ['data' => $this->data])->from('noreply@archiloka.com');
+        return $this->view('email.payment_transaction', ['data' => $this->data])
+        ->subject('PEMBAYARAN BERHASIl')
+        ->from('noreply@evenpedia.com', 'EVENPEDIA');
+        // ->from('noreply@archiloka.com');
 
     }
 }
