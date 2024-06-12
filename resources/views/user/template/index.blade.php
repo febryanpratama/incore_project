@@ -49,7 +49,7 @@
                                             <td class="text-center">{{ $item->nama_navigation }}</td>
                                             <td class="text-center">
                                                 <a href="{{ url('user/set-template/'.$item->id) }}" class="btn btn-sm btn-primary">Set Navigation</a>
-                                                {{-- <a href="{{ url('admin/materi/detail-soal/'.$item->id) }}" class="btn btn-sm btn-danger">Hapus</a> --}}
+                                                <a href="#" class="btn btn-sm btn-success">Active</a>
                                             </td>
                                         </tr>
                                     @endforeach

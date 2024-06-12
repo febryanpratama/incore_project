@@ -40,7 +40,16 @@
 
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('admin/materi/detail-soal/'.$item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                                @php
+                                                    $random = rand(1, 2);
+                                                @endphp
+
+                                                {{-- @if ($random == 1)
+                                                    
+                                                @else
+                                                    
+                                                @endif --}}
+                                                {{-- <a href="{{ url('admin/materi/detail-soal/'.$item->id) }}" class="btn btn-sm btn-success">Active</a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
