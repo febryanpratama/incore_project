@@ -63,7 +63,7 @@ class SetTemplateController extends Controller
 
         $navigation = NavigationValue::create([
             'navigation_id' => $request->navigation_id,
-            'nama_section' => $request->nama_section ?? "Data",
+            'nama_section' => $request->nama_section ?? "Lorem Ipsum Dolor Sit Amett",
             'value' => $fileName,
             'user_id' => auth()->user()->id
         ]);
