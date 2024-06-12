@@ -56,7 +56,8 @@ class SetTemplateController extends Controller
     }
 
     public function storeFile(Request $request){
-        $file = $request->file('file');
+
+        $file = $request->file('value');
         $fileName = time().'_'.$file->getClientOriginalName();
         $file->move(public_path('file'), $fileName);
 
