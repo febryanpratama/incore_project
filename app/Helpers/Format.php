@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\generateWebsite;
 use App\NavigationTemplate;
 use App\NavigationValue;
 use App\UserTemplate;
@@ -53,13 +54,18 @@ class Format {
         $extractedCode = trim($match[1]);
 
         // Tentukan nama file dan path untuk menyimpan HTML
-        $fileName = 'output.html'; // Anda bisa menambahkan timestamp atau ID jika perlu
+        $fileName = auth()->user()->id."-".time().'.html'; // Anda bisa menambahkan timestamp atau ID jika perlu
         $filePath = public_path('generate/' . $fileName); // Menggunakan public_path untuk menyimpan di folder public
 
         // Tulis kode HTML ke file
         file_put_contents($filePath, $extractedCode);
 
         // Mengembalikan respons sukses atau lokasi file yang disimpan
+        generateWebsite::create([
+            'user_id' => Auth::user()->id,
+            'path_file' => 'generate/'.$fileName
+        ]);
+        
         return response()->json([
             'message' => 'File berhasil disimpan.',
             'file_path' => url('generate/' . $fileName) // Mengembalikan URL untuk mengakses file di folder generate
