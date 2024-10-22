@@ -9,6 +9,7 @@ use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\User\AccountSosmedController;
 use App\Http\Controllers\User\KontenSosmedController;
 use App\Http\Controllers\User\SetTemplateController;
+use App\Http\Controllers\User\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -81,6 +82,12 @@ Route::group([
         Route::post('/store', [SetTemplateController::class, 'store']);
         Route::post('/store-file', [SetTemplateController::class, 'storeFile']);
         Route::post('/card', [SetTemplateController::class, 'storeCard']);
+    });
+
+    Route::prefix('website')->group(function(){
+        Route::get('/', [WebsiteController::class, 'index']);
+        Route::get("generate-session", [WebsiteController::class, 'createSession']);
+        Route::post("send-message", [WebsiteController::class, 'sendMessage']);
     });
 
     Route::prefix('konten-sosmed')->group(function(){

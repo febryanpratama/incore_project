@@ -33,6 +33,8 @@
       <link href="{{ asset('admin') }}/assets/plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
       <!-- common css -->
       <link href="{{ asset('admin') }}/css/app.css" rel="stylesheet" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
       <!-- end common css -->
       
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">

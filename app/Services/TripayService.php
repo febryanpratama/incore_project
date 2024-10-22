@@ -15,7 +15,6 @@ class TripayService {
 
         $response = $this->baseApi('https://tripay.co.id/api-sandbox/merchant/payment-channel', 'GET');
         
-        // dd($response);
         return $response;
     }
 
@@ -74,7 +73,7 @@ class TripayService {
             UserTemplate::create([
                 'reference' => $response['data']['reference'],
                 'unique_store' => Str::slug(time().$response['data']['customer_name']),
-                'template_id' => $data['template_id'],
+                'template_id' => 1,
             ]);
 
 
@@ -95,6 +94,7 @@ class TripayService {
 
     private function baseApi($url, $method, $data=[]){
         $apiKey = env('TRIPAY_API_KEY');
+        
 
         $curl = curl_init();
 
@@ -123,6 +123,7 @@ class TripayService {
 
         $response = json_decode($response, true);
 
+        // dd($response);
         return [
             'status' => true,
             'message' => 'Success',
@@ -166,7 +167,6 @@ class TripayService {
 
         $response = json_decode($response, true);
 
-        // dd($response);
         return [
             'status' => true,
             'message' => 'Success',

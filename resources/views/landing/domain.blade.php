@@ -30,7 +30,7 @@
                             <a class="uc-link fs-7 fw-bold d-inline-flex items-center gap-narrow border-bottom pb-narrow" href="javascript:void(0)">
                                 <span>Pilih Domain</span>
                                 {{-- <span onclick="addDomain('{{ $domain[$i]['domain'] }}','{{ $domain[$i]['price'] }}')">Pilih Domain</span> --}}
-                                <i class="icon icon-narrow unicon-arrow-up-right fw-bold"></i>
+                                {{-- <i class="icon icon-narrow unicon-arrow-up-right fw-bold"></i> --}}
                             </a>
                         </div>
                     </div>
@@ -195,14 +195,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="product_list">
-                                                <tr>
+                                                {{-- <tr>
                                                     <td>
                                                         <h5 class="title h6 m-0"><a class="text-none" href="/html/lexend/main/shop-product-detail">Layanan</a> x 1</h5>
                                                     </td>
                                                     <td>
                                                         <span class="subtotal">Rp. 500.000,00</span>
                                                     </td>
-                                                </tr>
+                                                </tr> --}}
                                                 
                                                 
                                             </tbody>
@@ -288,10 +288,9 @@
         price = parseInt(price)
         numprice = price.toLocaleString('id', {minimumFractionDigits: 2, maximumFractionDigits: 2})
 
-        console.log(numprice)
-
         $('#career_openings').addClass('hide')
-        $('#template_id').removeClass('hide')
+        $('#template_payment').removeClass('hide')
+
 
         $('#textvalue').html('List Template')
         $('#descvalue').html('Berikut ini merupakan List Template yang dapat anda gunakan pada website perusahaan anda')

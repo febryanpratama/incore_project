@@ -6,7 +6,7 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lexend</title>
+        <title>INCORE</title>
         <link rel="icon" type="image/png" href="https://unistudio.co/html/lexend/favicon.ico"/>
         <meta name="description" content="Lexend a clean, modern and pixel-perfect multipurpose blogging HTML5 website template.">
         <meta name="theme-color" content="#15171A">

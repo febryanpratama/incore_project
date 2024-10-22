@@ -53,38 +53,23 @@ class LandingController extends Controller
     }
 
     public function checkout(Request $request){
-        // dd($request->all());
-        $template = Template::find($request->template_id);
+        // $template = Template::find($request->template_id);
         $respRna = $this->rnaService->getPrice($request->domain);
 
-        if($template['diskon'] != 0){
-            $template['harga'] = $template['price'] - ($template['price'] * $template['diskon'] / 100);
-        }
+        
+        // if($template['diskon'] != 0){
+        //     $template['harga'] = $template['price'] - ($template['price'] * $template['diskon'] / 100);
+        // }
+            // dd($request->all(), $respRna);
 
         $data = [
             'nama' => $request->nama_lengkap,
             'email' => $request->email,
             'telpon' => $request->telpon,
-            'total_amount' => 500000+$respRna['data']+$template['harga'],
+            'total_amount' => $respRna['data'],
             'method' => $request->payment_method,
-            'template_id' => $template['id'],
+            'template_id' => 1,
             'order_items' => [
-                [
-                    'sku'         => 'TMP-'.$template['id'],
-                    'name'        => $template->nama_template,
-                    'price'       => $template['harga'],
-                    'quantity'    => 1,
-                    'product_url' => env('APP_URL'),
-                    'image_url'   => env('APP_URL').'/product/nama-produk-1.jpg',
-                ],
-                [
-                    'sku'         => 'TMP-Layanan-001',
-                    'name'        => 'Biaya Layanan',
-                    'price'       => 500000,
-                    'quantity'    => 1,
-                    'product_url' => env('APP_URL'),
-                    'image_url'   => env('APP_URL').'/product/nama-produk-1.jpg',
-                ],
                 [
                     'sku'         => 'TMP-RNADomain',
                     'name'        => 'Biaya Domain'.$request->domain,
@@ -124,21 +109,22 @@ class LandingController extends Controller
             $json = $request->getContent();
             $signature = hash_hmac('sha256', $json, env('TRIPAY_PRIVATE_KEY'));
     
-            if ($signature !== (string) $callbackSignature) {
-                return Response::json([
-                    'success' => false,
-                    'message' => 'Invalid signature',
-                ]);
-            }
+            // if ($signature !== (string) $callbackSignature) {
+            //     return Response::json([
+            //         'success' => false,
+            //         'message' => 'Invalid signature',
+            //     ]);
+            // }
     
-            if ('payment_status' !== (string) $request->server('HTTP_X_CALLBACK_EVENT')) {
-                return Response::json([
-                    'success' => false,
-                    'message' => 'Unrecognized callback event, no action was taken',
-                ]);
-            }
+            // if ('payment_status' !== (string) $request->server('HTTP_X_CALLBACK_EVENT')) {
+            //     return Response::json([
+            //         'success' => false,
+            //         'message' => 'Unrecognized callback event, no action was taken',
+            //     ]);
+            // }
     
             $data = json_decode($json);
+            // dd($data);
     
             if (JSON_ERROR_NONE !== json_last_error()) {
                 return Response::json([
