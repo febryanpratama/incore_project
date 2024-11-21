@@ -26,7 +26,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5>List Navigation {{ auth()->user()->id }}</h5>
+                        <h5>Detail Conversation {{ auth()->user()->id }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="background-color: #f9fafc" id="listChat">
@@ -35,17 +35,18 @@
                             
                                 @if (!$item['isUser'])
                                     <!-- Bubble 1 (Left aligned) -->
-                                    <div class="px-4 py-2 mt-2 isAi" style="border-radius: 10px">
+                                    {{-- <div class="px-4 py-2 mt-2 isAi" style="border-radius: 10px">
                                         <div class="d-flex">
                                             <div class="mx-2">
                                                 <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" alt="" style="width: 50px;height: 50px;border-radius:100%">
                                             </div>
-                                            <div class="mx-2">{{ $item["response"] }}</div>
-
+                                            <div class="mx-2">{!! $item["response"] !!}</div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
                                             @if (App\Helpers\Format::checkContainsString($item["response"]))
                                                 <div class="mx-2">
                                                     <button type="button" class="btn btn-primary" onClick="functionModal({{ json_encode($item['response']) }})">
-                                                        Launch demo modal
+                                                        Priview Halaman
                                                     </button>
                                                 </div>
                                                 <div class="mx-2">
@@ -54,6 +55,14 @@
                                                     </button>
                                                 </div>
                                             @endif
+                                        </div>
+                                    </div> --}}
+                                    <div class="px-4 py-2 mt-2 isAi" style="border-radius: 10px">
+                                        <div class="d-flex">
+                                            <div class="mx-2">
+                                                <img src="{{ asset('admin/assets/images/faces/face1.jpg') }}" alt="" style="width: 50px;height: 50px;border-radius:100%">
+                                            </div>
+                                            <div class="mx-2">{!! $item["response"] !!}</div>
                                         </div>
                                     </div>
                                 @endif
@@ -200,6 +209,7 @@
 
                         // Re-enable the send button
                         $("#btnsend").removeAttr("disabled");
+                        window.location.reload();
                     }
                 });
             });
@@ -250,4 +260,35 @@
             }
         }
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle preview
+        document.querySelectorAll('.preview-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const htmlContent = this.getAttribute('data-html');
+                const previewWindow = window.open('', '_blank');
+                previewWindow.document.open();
+                previewWindow.document.write(htmlContent);
+                previewWindow.document.close();
+            });
+        });
+
+        // Handle download
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const htmlContent = this.getAttribute('data-html');
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'code.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    });
+</script>
 @endsection

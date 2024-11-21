@@ -31,6 +31,8 @@
       
       <!-- end plugin css -->
       <link href="{{ asset('admin') }}/assets/plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
       <!-- common css -->
       <link href="{{ asset('admin') }}/css/app.css" rel="stylesheet" />
       <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -84,6 +86,8 @@
       <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
    	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
 
 
 

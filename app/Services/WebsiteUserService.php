@@ -15,6 +15,8 @@ class WebsiteUserService {
 
 
         $response = $this->baseApiGet('https://api-sahabatjiwa.indonesiacore.com/api/curhat/create-session-website');
+
+        // dd($response);
         
         if(!$response['status']){
             return [
@@ -47,6 +49,7 @@ class WebsiteUserService {
         $body = [
             "conversation_id" => $data->conversation_id,
         ];
+
         $response = $this->baseApiPost('https://api-sahabatjiwa.indonesiacore.com/api/curhat/detail', $body);
         
         if(!$response['status']){
@@ -161,6 +164,8 @@ class WebsiteUserService {
         
             $response = json_decode($response, true);
 
+            // dd($response);
+
 
             if($response["errorCode"] != 0){
                 return [
@@ -219,6 +224,8 @@ class WebsiteUserService {
                     'message' => $error
                 ];
             }
+
+            // dd($response);
         
             $response = json_decode($response, true);
 

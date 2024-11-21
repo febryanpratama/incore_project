@@ -72,7 +72,7 @@
                <span class="link-title">Template</span>
             </a>
          </li>
-          <li class="nav-item ">
+          {{-- <li class="nav-item ">
             <a href="{{ url('user/konten-sosmed') }}" class="nav-link">
                <i class="link-icon" data-feather="calendar"></i>
                <span class="link-title">Konten Sosmed</span>
@@ -83,7 +83,7 @@
                <i class="link-icon" data-feather="bell"></i>
                <span class="link-title">Account Sosmed</span>
             </a>
-         </li>
+         </li> --}}
           @endrole
           {{-- <li class="nav-item ">
              <a href="{{ url('admin/quiz') }}" class="nav-link">
