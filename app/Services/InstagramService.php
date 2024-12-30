@@ -15,6 +15,7 @@ class InstagramService {
             ->where('status', 'Active')
             ->first();        
 
+            dd($account);
         $getToken = json_decode($account->data);
         $response = Http::get('https://graph.instagram.com/me/media', [
             'fields' => 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
