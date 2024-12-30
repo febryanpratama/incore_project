@@ -16,7 +16,7 @@ class TwitterService
     public function __construct()
     {
 
-        $accountTwitter = Account::where('app', 'Twitter')->where('user_id', 6)->where('status', 'Active')->first();
+        $accountTwitter = Account::where('app', 'Twitter')->where('user_id', 15)->where('status', 'Active')->first();
 
         $getToken = json_decode($accountTwitter->data);
 
