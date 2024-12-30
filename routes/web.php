@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountKontenController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Front\GetTemplateController;
@@ -100,6 +102,35 @@ Route::group([
     Route::prefix('account-sosmed')->group(function(){
         Route::get('/', [AccountSosmedController::class, 'index']);
         Route::post('/', [AccountSosmedController::class, 'store']);
+    });
+
+    // New Feature
+
+    Route::prefix('konten')->group(function () {
+        Route::get('post/twitter', [AccountKontenController::class, 'postTwitter']);
+        Route::get('/', [AccountKontenController::class, 'index'])->name('konten.index');
+        Route::get('create', [AccountKontenController::class, 'create'])->name('konten.create');
+        Route::get('/{id}/edit', [AccountKontenController::class, 'edit'])->name('konten.edit');
+        Route::post('/', [AccountKontenController::class, 'store'])->name('konten.store');
+        Route::post('/{id}', [AccountKontenController::class, 'update'])->name('konten.update');
+        Route::delete('/{id}', [AccountKontenController::class, 'destroy'])->name('konten.destroy');
+    });
+
+    // Account
+    Route::prefix('account')->group(function () {
+        Route::get('/', [AccountController::class, 'index'])->name('account.index');
+
+        // // Instagram
+        // Route::prefix('instagram')->group(function () {
+        //     Route::get('/instagram/auth-url', [SocialiteController::class, 'generateInstagramAuthUrl'])->name('instagram.auth.url');
+        //     Route::get('activation/{id}', [SocialiteController::class, 'instagramActivation'])->name('instagram.activation');
+        // });
+
+        // // Twitter
+        // Route::prefix('x')->group(function () {
+        //     Route::get('/x/auth-url', [SocialiteController::class, 'generateXAuthUrl'])->name('x.auth.url');
+        //     Route::get('activation/{id}', [SocialiteController::class, 'xActivation'])->name('x.activation');
+        // });
     });
 });
 
